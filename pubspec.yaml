@@ -1,0 +1,36 @@
+name: split_it
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  google_fonts: ^2.1.0
+
+  #Firebase
+  firebase_core: ^1.2.0
+
+  #SocialLogin
+  google_sign_in: ^5.0.4
+  sign_in_with_apple: ^3.0.0
+
+  #Facilitar os testes
+  mocktail: ^0.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
