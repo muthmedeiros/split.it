@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/home/widgets/app_bar_widget.dart';
+import 'package:split_it/modules/home/home_controller.dart';
+import 'package:split_it/modules/home/home_state.dart';
+import 'package:split_it/modules/home/widgets/app_bar/app_bar_widget.dart';
+import 'package:split_it/modules/home/widgets/event_tile_widget.dart';
 import 'package:split_it/modules/login/models/user_model.dart';
+import 'package:split_it/shared/models/event_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final controller = HomeController();
+
+  @override
+  void initState() {
+    controller.getEvents();
+    controller.listen((homeState) => setState(() {}));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final UserModel user =
@@ -10,6 +28,35 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWidget(
         user: user,
+        onTapAddButton: () {},
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              if (controller.homeState is HomeStateLoading) ...[
+                ...List.generate(
+                    5,
+                    (index) => EventTileWidget(
+                          eventModel: EventModel(),
+                          isLoading: true,
+                        ))
+              ] else if (controller.homeState is HomeStateSuccess) ...[
+                ...(controller.homeState as HomeStateSuccess)
+                    .events
+                    .map(
+                      (e) => EventTileWidget(eventModel: e),
+                    )
+                    .toList()
+              ] else if (controller.homeState is HomeStateFailure) ...[
+                Text((controller.homeState as HomeStateFailure).message)
+              ] else ...[
+                Container(),
+              ]
+            ],
+          ),
+        ),
       ),
     );
   }

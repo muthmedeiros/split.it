@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/modules/home/home_page.dart';
 
-import 'modules/erorr/error_page.dart';
+import 'modules/error/error_page.dart';
 import 'modules/login/login_page.dart';
 import 'modules/splash/splash_page.dart';
 

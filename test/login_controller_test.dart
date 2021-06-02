@@ -8,35 +8,35 @@ import 'package:split_it/modules/login/models/user_model.dart';
 class LoginServiceMock extends Mock implements LoginService {}
 
 void main() {
-  late LoginController controller;
-  late LoginService service;
+  late LoginController loginController;
+  late LoginService loginService;
 
   setUp(() {
-    service = LoginServiceMock();
-    controller = LoginController(
-      service: service,
+    loginService = LoginServiceMock();
+    loginController = LoginController(
+      loginService: loginService,
       onUpdate: () {},
     );
   });
 
   test('Testando o Google SingIn - Success', () async {
-    expect(controller.state, isInstanceOf<LoginStateEmpty>());
+    expect(loginController.loginState, isInstanceOf<LoginStateEmpty>());
     final states = <LoginState>[];
-    controller.listen((state) => states.add(state));
-    when(service.googleSignIn)
+    loginController.listen((state) => states.add(state));
+    when(loginService.googleSignIn)
         .thenAnswer((_) async => UserModel(email: 'email', id: 'id'));
-    await controller.googleSignIn();
+    await loginController.googleSignIn();
     expect(states[0], isInstanceOf<LoginStateLoading>());
     expect(states[1], isInstanceOf<LoginStateSuccess>());
     expect(states.length, 2);
   });
 
   test('Testando o Google SingIn - Failure', () async {
-    expect(controller.state, isInstanceOf<LoginStateEmpty>());
+    expect(loginController.loginState, isInstanceOf<LoginStateEmpty>());
     final states = <LoginState>[];
-    controller.listen((state) => states.add(state));
-    when(service.googleSignIn).thenThrow("Deu error");
-    await controller.googleSignIn();
+    loginController.listen((state) => states.add(state));
+    when(loginService.googleSignIn).thenThrow("Deu error");
+    await loginController.googleSignIn();
     expect(states[0], isInstanceOf<LoginStateLoading>());
     expect(states[1], isInstanceOf<LoginStateFailure>());
     expect((states[1] as LoginStateFailure).message, "Deu error");
@@ -44,15 +44,15 @@ void main() {
   });
 
   test('Testando o método listen', () async {
-    controller.state = LoginStateLoading();
-    controller
+    loginController.loginState = LoginStateLoading();
+    loginController
         .listen((state) => expect(state, isInstanceOf<LoginStateLoading>()));
-    controller.update();
+    loginController.update();
   });
   test('Testando o método update', () async {
-    controller.state = LoginStateLoading();
-    controller
+    loginController.loginState = LoginStateLoading();
+    loginController
         .listen((state) => expect(state, isInstanceOf<LoginStateLoading>()));
-    controller.update();
+    loginController.update();
   });
 }

@@ -1,28 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:split_it/modules/login/login_service.dart';
-import 'package:split_it/modules/login/login_state.dart';
+
+import 'login_state.dart';
 
 class LoginController {
-  LoginState state = LoginStateEmpty();
+  LoginState loginState = LoginStateEmpty();
   VoidCallback onUpdate;
-  Function(LoginState state)? onChange;
+  Function(LoginState loginState)? onChange;
 
-  final LoginService service;
+  final LoginService loginService;
 
   LoginController({
     required this.onUpdate,
-    required this.service,
+    required this.loginService,
   });
 
   Future<void> googleSignIn() async {
     try {
-      state = LoginStateLoading();
+      loginState = LoginStateLoading();
       update();
-      final user = await service.googleSignIn();
-      state = LoginStateSuccess(user: user);
+      final user = await loginService.googleSignIn();
+      loginState = LoginStateSuccess(user: user);
       update();
     } catch (error) {
-      state = LoginStateFailure(message: error.toString());
+      loginState = LoginStateFailure(message: error.toString());
       update();
     }
   }
@@ -30,11 +31,11 @@ class LoginController {
   void update() {
     onUpdate();
     if (onChange != null) {
-      onChange!(state);
+      onChange!(loginState);
     }
   }
 
-  void listen(Function(LoginState state) onChange) {
+  void listen(Function(LoginState loginState) onChange) {
     this.onChange = onChange;
   }
 }

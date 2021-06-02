@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:split_it/modules/login/login_controller.dart';
 import 'package:split_it/modules/login/login_service.dart';
 import 'package:split_it/modules/login/login_state.dart';
-import 'package:split_it/modules/theme/app_theme.dart';
+import 'package:split_it/theme/app_theme.dart';
 
 import 'widgets/social_button.dart';
 
@@ -17,10 +17,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     controller = LoginController(
-      service: LoginServiceImpl(),
+      loginService: LoginServiceImpl(),
       onUpdate: () {
-        if (controller.state is LoginStateSuccess) {
-          final user = (controller.state as LoginStateSuccess).user;
+        if (controller.loginState is LoginStateSuccess) {
+          final user = (controller.loginState as LoginStateSuccess).user;
           Navigator.pushReplacementNamed(context, '/home', arguments: user);
         } else {
           setState(() {});
@@ -65,10 +65,10 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 32,
               ),
-              if (controller.state is LoginStateLoading) ...[
+              if (controller.loginState is LoginStateLoading) ...[
                 CircularProgressIndicator(),
-              ] else if (controller.state is LoginStateFailure) ...[
-                Text((controller.state as LoginStateFailure).message)
+              ] else if (controller.loginState is LoginStateFailure) ...[
+                Text((controller.loginState as LoginStateFailure).message)
               ] else
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),

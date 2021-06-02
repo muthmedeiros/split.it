@@ -6,13 +6,19 @@ abstract class AppColors {
   Color get title;
   Color get button;
   Color get border;
-  Color get userNameHome;
+  Color get nameAppBarHome;
   Color get addBorderHome;
   Color get appBarContainers;
   Color get appBarContainersBorder;
-  Color get payOrReceiveText;
+  Color get infoCardTitle;
   Color get receiveAmountText;
   Color get payAmountText;
+  Color get addButton;
+  Color get eventTileTitle;
+  Color get eventTileSubtitle;
+  Color get eventTileMoney;
+  Color get eventTilePeople;
+  Color get divider;
 }
 
 class AppColorsDefault implements AppColors {
@@ -32,7 +38,7 @@ class AppColorsDefault implements AppColors {
   Color get border => Color(0xFFDCE0E6);
 
   @override
-  Color get userNameHome => Color(0xFFFFFFFF);
+  Color get nameAppBarHome => Color(0xFFFFFFFF);
 
   @override
   Color get addBorderHome => Color(0xFFFFFFFF).withOpacity(0.25);
@@ -44,11 +50,29 @@ class AppColorsDefault implements AppColors {
   Color get appBarContainersBorder => Color(0xFFDCE0E5);
 
   @override
-  Color get payOrReceiveText => Color(0xFF666666);
+  Color get infoCardTitle => Color(0xFF666666);
 
   @override
   Color get receiveAmountText => Color(0xFF40B28C);
 
   @override
   Color get payAmountText => Color(0xFFE83F5B);
+
+  @override
+  Color get addButton => Color(0xFFF5F5F5);
+
+  @override
+  Color get eventTileMoney => Color(0xFF666666);
+
+  @override
+  Color get eventTilePeople => Color(0xFFA4B2AE);
+
+  @override
+  Color get eventTileSubtitle => Color(0xFF666666);
+
+  @override
+  Color get eventTileTitle => Color(0xFF455250);
+
+  @override
+  Color get divider => Color(0xFF666666);
 }

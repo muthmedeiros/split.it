@@ -6,10 +6,14 @@ import 'app_theme.dart';
 abstract class AppTextStyles {
   TextStyle get title;
   TextStyle get button;
-  TextStyle get userNameHome;
-  TextStyle get receiveOrPay;
+  TextStyle get nameAppBarHome;
+  TextStyle get infoCardTitle;
   TextStyle get receiveAmount;
   TextStyle get payAmount;
+  TextStyle get eventTileTile;
+  TextStyle get eventTileSubtitle;
+  TextStyle get eventTileMoney;
+  TextStyle get eventTilePeople;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -28,17 +32,17 @@ class AppTextStylesDefault implements AppTextStyles {
       );
 
   @override
-  TextStyle get userNameHome => GoogleFonts.montserrat(
+  TextStyle get nameAppBarHome => GoogleFonts.montserrat(
         fontSize: 24,
         fontWeight: FontWeight.w700,
-        color: AppTheme.colors.userNameHome,
+        color: AppTheme.colors.nameAppBarHome,
       );
 
   @override
-  TextStyle get receiveOrPay => GoogleFonts.inter(
+  TextStyle get infoCardTitle => GoogleFonts.inter(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: AppTheme.colors.payOrReceiveText,
+        color: AppTheme.colors.infoCardTitle,
       );
 
   @override
@@ -53,5 +57,33 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 20,
         fontWeight: FontWeight.w600,
         color: AppTheme.colors.payAmountText,
+      );
+
+  @override
+  TextStyle get eventTileMoney => GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileMoney,
+      );
+
+  @override
+  TextStyle get eventTilePeople => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTilePeople,
+      );
+
+  @override
+  TextStyle get eventTileSubtitle => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileSubtitle,
+      );
+
+  @override
+  TextStyle get eventTileTile => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppTheme.colors.eventTileTitle,
       );
 }
