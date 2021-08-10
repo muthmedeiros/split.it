@@ -7,6 +7,7 @@ class StepInputText extends StatelessWidget {
   final TextAlign textAlign;
   final EdgeInsets? padding;
   final TextInputType? keyboardType;
+  final String? prefixText;
 
   const StepInputText({
     Key? key,
@@ -15,6 +16,7 @@ class StepInputText extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.padding,
     this.keyboardType,
+    this.prefixText,
   }) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class StepInputText extends StatelessWidget {
         style: AppTheme.textStyles.textField,
         cursorColor: AppTheme.colors.backgroundSecondary,
         decoration: InputDecoration(
+          prefixText: prefixText,
           hintText: hintText,
           hintStyle: AppTheme.textStyles.hintTextField,
           border: UnderlineInputBorder(

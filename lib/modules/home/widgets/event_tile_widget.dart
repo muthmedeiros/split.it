@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:split_it/modules/home/widgets/icon_dolar_widget.dart';
 import 'package:split_it/shared/models/event_model.dart';
+import 'package:split_it/shared/utils/months.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 import 'loading_widget.dart';
@@ -72,7 +73,7 @@ class EventTileWidget extends StatelessWidget {
                     style: AppTheme.textStyles.eventTileTile,
                   ),
                   subtitle: Text(
-                    eventModel.created!.toIso8601String(),
+                    "${eventModel.created!.day} ${Months.months[eventModel.created!.month - 1]}",
                     style: AppTheme.textStyles.eventTileSubtitle,
                   ),
                   trailing: Column(
