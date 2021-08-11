@@ -1,4 +1,4 @@
-import 'package:split_it/modules/home/models/dashboard_model.dart';
+import '../../models/dashboard_model.dart';
 
 abstract class AppBarState {}
 

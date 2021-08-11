@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/create_split/create_split_page.dart';
-import 'package:split_it/modules/home/home_page.dart';
 
+import 'modules/create_split/create_split_page.dart';
 import 'modules/error/error_page.dart';
+import 'modules/home/home_page.dart';
 import 'modules/login/login_page.dart';
 import 'modules/splash/splash_page.dart';
 

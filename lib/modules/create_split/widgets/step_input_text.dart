@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/theme/app_theme.dart';
+
+import '../../../theme/app_theme.dart';
 
 class StepInputText extends StatelessWidget {
   final void Function(String) onChanged;

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:split_it/modules/home/widgets/icon_dolar_widget.dart';
-import 'package:split_it/shared/models/event_model.dart';
-import 'package:split_it/shared/utils/months.dart';
-import 'package:split_it/theme/app_theme.dart';
-
+import '../../../shared/models/event_model.dart';
+import '../../../shared/utils/months.dart';
+import '../../../theme/app_theme.dart';
+import 'icon_dolar_widget.dart';
 import 'loading_widget.dart';
 
 class EventTileWidget extends StatelessWidget {

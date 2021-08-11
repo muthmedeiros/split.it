@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/create_split/create_split_controller.dart';
-import 'package:split_it/modules/create_split/steps/one/step_one_page.dart';
-import 'package:split_it/modules/create_split/steps/three/step_three_page.dart';
-import 'package:split_it/modules/create_split/steps/two/step_two_page.dart';
 
 import '../../theme/app_theme.dart';
+import '../create_split/create_split_controller.dart';
+import '../create_split/steps/one/step_one_page.dart';
+import '../create_split/steps/three/step_three_page.dart';
+import '../create_split/steps/two/step_two_page.dart';
 import 'widgets/bottom_stepper_bar.dart';
 import 'widgets/create_split_appbar.dart';
 

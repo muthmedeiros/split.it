@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/home/widgets/icon_dolar_widget.dart';
-import 'package:split_it/modules/home/widgets/loading_widget.dart';
-import 'package:split_it/theme/app_theme.dart';
+
+import '../../../theme/app_theme.dart';
+import '../../home/widgets/icon_dolar_widget.dart';
+import '../../home/widgets/loading_widget.dart';
 
 class InfoCardWidget extends StatelessWidget {
   final double value;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/login/login_controller.dart';
-import 'package:split_it/modules/login/login_service.dart';
-import 'package:split_it/modules/login/login_state.dart';
-import 'package:split_it/theme/app_theme.dart';
 
+import '../../theme/app_theme.dart';
+import '../login/login_controller.dart';
+import '../login/login_service.dart';
+import '../login/login_state.dart';
 import 'widgets/social_button.dart';
 
 class LoginPage extends StatefulWidget {

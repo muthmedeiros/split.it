@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/create_split/widgets/step_input_text.dart';
-import 'package:split_it/modules/create_split/widgets/step_title.dart';
+
+import '../../widgets/step_input_text.dart';
+import '../../widgets/step_title.dart';
 
 class StepThreePage extends StatefulWidget {
   const StepThreePage({Key? key}) : super(key: key);

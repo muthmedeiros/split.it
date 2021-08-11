@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:split_it/modules/login/login_service.dart';
 
+import 'login_service.dart';
 import 'login_state.dart';
 
 class LoginController {

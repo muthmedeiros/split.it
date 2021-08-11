@@ -1,6 +1,5 @@
-import 'package:split_it/modules/home/repositories/home_repository.dart';
-import 'package:split_it/modules/home/repositories/home_repository_mock.dart';
-
+import '../../../home/repositories/home_repository.dart';
+import '../../../home/repositories/home_repository_mock.dart';
 import 'app_bar_state.dart';
 
 class AppBarController {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/create_split/widgets/step_input_text.dart';
-import 'package:split_it/modules/create_split/widgets/step_title.dart';
+
+import '../../../create_split/widgets/step_input_text.dart';
+import '../../../create_split/widgets/step_title.dart';
 
 class StepOnePage extends StatefulWidget {
   final void Function(String vaule) onChanged;

@@ -1,5 +1,4 @@
-import 'package:split_it/modules/home/home_state.dart';
-
+import 'home_state.dart';
 import 'repositories/home_repository.dart';
 import 'repositories/home_repository_mock.dart';
 

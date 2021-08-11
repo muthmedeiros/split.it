@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/home/home_controller.dart';
-import 'package:split_it/modules/home/home_state.dart';
-import 'package:split_it/modules/home/widgets/app_bar/app_bar_widget.dart';
-import 'package:split_it/modules/home/widgets/event_tile_widget.dart';
-import 'package:split_it/modules/login/models/user_model.dart';
-import 'package:split_it/shared/models/event_model.dart';
+
+import '../../shared/models/event_model.dart';
+import '../home/home_controller.dart';
+import '../home/home_state.dart';
+import '../home/widgets/app_bar/app_bar_widget.dart';
+import '../home/widgets/event_tile_widget.dart';
+import '../login/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
