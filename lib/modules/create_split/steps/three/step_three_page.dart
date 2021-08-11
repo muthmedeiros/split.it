@@ -41,7 +41,8 @@ class _StepThreePageState extends State<StepThreePage> {
                 child: StepInputText(
                   padding: EdgeInsets.zero,
                   onChanged: (value) {},
-                  hintText: 'R\$ 0,00',
+                  prefixText: 'R\$ ',
+                  hintText: '0,00',
                   textAlign: TextAlign.start,
                   keyboardType: TextInputType.phone,
                 ),
