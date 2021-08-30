@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:split_it/modules/create_split/create_split_controller.dart';
 
 import '../../../theme/app_theme.dart';
 import 'stepper_next_button.dart';
 
 class BottomStepperBar extends StatelessWidget {
   final VoidCallback onTapCancel;
-  final VoidCallback onTapNext;
-  final bool enabledButtons;
+  final CreateSplitController controller;
 
   const BottomStepperBar({
     Key? key,
     required this.onTapCancel,
-    required this.onTapNext,
-    this.enabledButtons = false,
+    required this.controller,
   }) : super(key: key);
+
+  void onTapNext() {
+    if (controller.currentPage == 2) {
+      controller.saveEvent();
+    } else {
+      controller.nextPage();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class BottomStepperBar extends StatelessWidget {
               children: [
                 StepperNextButton(
                   label: 'Cancelar',
-                  enabled: enabledButtons,
+                  enabled: true,
                   onTap: onTapCancel,
                 ),
                 Container(
@@ -35,10 +43,13 @@ class BottomStepperBar extends StatelessWidget {
                   height: 60,
                   color: AppTheme.colors.divider,
                 ),
-                StepperNextButton(
-                  label: 'Continuar',
-                  enabled: enabledButtons,
-                  onTap: onTapNext,
+                Observer(
+                  builder: (_) => StepperNextButton(
+                    label:
+                        controller.currentPage == 2 ? 'Finalizar' : 'Continuar',
+                    enabled: controller.enableNavigateButton,
+                    onTap: onTapNext,
+                  ),
                 ),
               ],
             ),

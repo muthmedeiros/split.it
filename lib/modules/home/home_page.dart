@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../shared/models/event_model.dart';
 import '../home/home_controller.dart';
@@ -6,6 +7,7 @@ import '../home/home_state.dart';
 import '../home/widgets/app_bar/app_bar_widget.dart';
 import '../home/widgets/event_tile_widget.dart';
 import '../login/models/user_model.dart';
+import 'repositories/home_repository_firebase.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,12 +15,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final controller = HomeController();
+  final controller = HomeController(homeRepository: HomeRepositoryFirebase());
 
   @override
   void initState() {
     controller.getEvents();
-    controller.listen((homeState) => setState(() {}));
     super.initState();
   }
 
@@ -38,25 +39,32 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              if (controller.homeState is HomeStateLoading) ...[
-                ...List.generate(
-                    5,
-                    (index) => EventTileWidget(
-                          eventModel: EventModel(),
-                          isLoading: true,
-                        ))
-              ] else if (controller.homeState is HomeStateSuccess) ...[
-                ...(controller.homeState as HomeStateSuccess)
-                    .events
-                    .map(
-                      (e) => EventTileWidget(eventModel: e),
-                    )
-                    .toList()
-              ] else if (controller.homeState is HomeStateFailure) ...[
-                Text((controller.homeState as HomeStateFailure).message)
-              ] else ...[
-                Container(),
-              ]
+              Observer(builder: (context) {
+                if (controller.state is HomeStateLoading) {
+                  return Column(
+                    children: List.generate(
+                      5,
+                      (index) => EventTileWidget(
+                        eventModel: EventModel(),
+                        isLoading: true,
+                      ),
+                    ),
+                  );
+                } else if (controller.state is HomeStateSuccess) {
+                  return Column(
+                    children: (controller.state as HomeStateSuccess)
+                        .events
+                        .map(
+                          (e) => EventTileWidget(eventModel: e),
+                        )
+                        .toList(),
+                  );
+                } else if (controller.state is HomeStateFailure) {
+                  return Text((controller.state as HomeStateFailure).message);
+                } else {
+                  return Container();
+                }
+              })
             ],
           ),
         ),

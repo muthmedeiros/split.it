@@ -17,7 +17,7 @@ class EventTileWidget extends StatelessWidget {
   }) : super(key: key);
 
   IconDolarType get _type =>
-      eventModel.value! >= 0 ? IconDolarType.receive : IconDolarType.send;
+      eventModel.value >= 0 ? IconDolarType.receive : IconDolarType.send;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class EventTileWidget extends StatelessWidget {
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(
-                    eventModel.title!,
+                    eventModel.name,
                     style: AppTheme.textStyles.eventTileTile,
                   ),
                   subtitle: Text(
@@ -79,7 +79,7 @@ class EventTileWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'R\$ ${eventModel.value!.toStringAsFixed(2)}',
+                        'R\$ ${eventModel.value.toStringAsFixed(2)}',
                         style: AppTheme.textStyles.eventTileMoney,
                       ),
                       SizedBox(

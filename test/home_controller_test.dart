@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobx/mobx.dart' as mobx;
 import 'package:mocktail/mocktail.dart';
 import 'package:split_it/modules/home/home_controller.dart';
 import 'package:split_it/modules/home/home_state.dart';
@@ -19,30 +20,30 @@ void main() {
   });
 
   test('Testando o GetEvents - Success', () async {
-    expect(homeController.homeState, isInstanceOf<HomeStateEmpty>());
+    expect(homeController.state, isInstanceOf<HomeStateEmpty>());
     final states = <HomeState>[];
-    homeController.listen((state) => states.add(state));
+    mobx.autorun((_) => states.add(homeController.state));
     when(homeRepository.getEvents).thenAnswer((_) async => [
           EventModel(
-            title: 'title',
+            name: 'title',
             created: DateTime.now(),
             value: 100,
-            people: 1,
           )
         ]);
     await homeController.getEvents();
-    expect(states[0], isInstanceOf<HomeStateLoading>());
-    expect(states[1], isInstanceOf<HomeStateSuccess>());
-    expect(states.length, 2);
+    expect(states[0], isInstanceOf<HomeStateEmpty>());
+    expect(states[1], isInstanceOf<HomeStateLoading>());
+    expect(states[2], isInstanceOf<HomeStateSuccess>());
+    expect(states.length, 3);
   });
 
   test('Testando o GetEvents - Failure', () async {
-    expect(homeController.homeState, isInstanceOf<HomeStateEmpty>());
+    expect(homeController.state, isInstanceOf<HomeStateEmpty>());
     final states = <HomeState>[];
-    homeController.listen((state) => states.add(state));
+    mobx.autorun((_) => states.add(homeController.state));
     when(homeRepository.getEvents).thenThrow("Deu error");
     await homeController.getEvents();
-    expect(states[0], isInstanceOf<HomeStateLoading>());
+    expect(states[0], isInstanceOf<HomeStateEmpty>());
     expect(states[1], isInstanceOf<HomeStateFailure>());
     expect((states[1] as HomeStateFailure).message, "Deu error");
     expect(states.length, 2);

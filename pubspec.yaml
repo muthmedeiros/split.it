@@ -17,6 +17,7 @@ dependencies:
 
   #Firebase
   firebase_core: ^1.2.0
+  cloud_firestore: ^2.5.0
 
   #SocialLogin
   google_sign_in: ^5.0.4
@@ -28,9 +29,18 @@ dependencies:
   #Facilitar os loadings
   shimmer: ^2.0.0
 
+  #Gereência de Estado
+  mobx: ^2.0.4
+  flutter_mobx: ^2.0.0
+  mobx_codegen: ^2.0.2
+
+  #Máscara de texto
+  flutter_masked_text2: ^0.9.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.1.1
 
 flutter:
   uses-material-design: true

@@ -6,26 +6,32 @@ class StepInputText extends StatelessWidget {
   final void Function(String) onChanged;
   final String hintText;
   final TextAlign textAlign;
+  final String? initialValue;
   final EdgeInsets? padding;
-  final TextInputType? keyboardType;
+  final TextInputType keyboardType;
   final String? prefixText;
+  final TextEditingController? controller;
 
   const StepInputText({
     Key? key,
     required this.onChanged,
     required this.hintText,
     this.textAlign = TextAlign.center,
+    this.initialValue,
     this.padding,
-    this.keyboardType,
+    this.keyboardType = TextInputType.text,
     this.prefixText,
+    this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: padding ?? const EdgeInsets.symmetric(horizontal: 64.0),
-      child: TextField(
-        keyboardType: keyboardType ?? TextInputType.text,
+      child: TextFormField(
+        initialValue: initialValue,
+        controller: controller,
+        keyboardType: keyboardType,
         onChanged: onChanged,
         textAlign: textAlign,
         style: AppTheme.textStyles.textField,

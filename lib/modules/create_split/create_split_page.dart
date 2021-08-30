@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:split_it/modules/create_split/steps/four/step_four_page.dart';
 
+import '../../shared/repositories/firebase_repository.dart';
 import '../../theme/app_theme.dart';
 import '../create_split/create_split_controller.dart';
 import '../create_split/steps/one/step_one_page.dart';
@@ -16,39 +19,19 @@ class CreateSplitPage extends StatefulWidget {
 }
 
 class _CreateSplitPageState extends State<CreateSplitPage> {
-  final controller = CreateSplitController();
+  final controller = CreateSplitController(repository: FirebaseRepository());
 
   late List<Widget> pages;
 
   @override
   void initState() {
     pages = [
-      StepOnePage(
-        onChanged: (value) {
-          controller.setEventName(value);
-          setState(() {});
-        },
-      ),
-      StepTwoPage(),
-      StepThreePage(),
+      StepOnePage(createController: controller),
+      StepTwoPage(createController: controller),
+      StepThreePage(createController: controller),
+      StepFourPage(createController: controller),
     ];
     super.initState();
-  }
-
-  var index = 0;
-
-  void nextPage() {
-    if (index < 2) {
-      index++;
-      setState(() {});
-    }
-  }
-
-  void backPage() {
-    if (index > 0) {
-      index--;
-      setState(() {});
-    }
   }
 
   @override
@@ -56,15 +39,16 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
     return Scaffold(
       backgroundColor: AppTheme.colors.backgroundPrimary,
       appBar: CreateSplitAppBar(
-        actualPage: index,
-        onTapBack: backPage,
+        controller: controller,
+        onTapBack: controller.backPage,
         size: pages.length,
       ),
-      body: pages[index],
+      body: Observer(
+        builder: (_) => pages[controller.currentPage],
+      ),
       bottomNavigationBar: BottomStepperBar(
-        enabledButtons: controller.enableNavigateButton(),
-        onTapCancel: () {},
-        onTapNext: nextPage,
+        controller: controller,
+        onTapCancel: () => Navigator.pop(context),
       ),
     );
   }
