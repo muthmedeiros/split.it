@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:split_it/modules/create_split/create_split_controller.dart';
 
 import '../../../theme/app_theme.dart';
+import '../create_split_controller.dart';
 import 'stepper_next_button.dart';
 
 class BottomStepperBar extends StatelessWidget {
-  final VoidCallback onTapCancel;
   final CreateSplitController controller;
 
   const BottomStepperBar({
     Key? key,
-    required this.onTapCancel,
     required this.controller,
   }) : super(key: key);
 
@@ -25,31 +23,40 @@ class BottomStepperBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      child: Container(
-        height: 60,
-        child: Column(
+    return Container(
+      height: 61,
+      child: Observer(
+        builder: (_) => Column(
           children: [
+            Container(
+              color: controller.enableNavigateButton
+                  ? AppTheme.colors.divider
+                  : AppTheme.colors.dividerDisabled,
+              width: double.maxFinite,
+              height: 1,
+            ),
             Row(
               children: [
                 StepperNextButton(
                   label: 'Cancelar',
-                  enabled: true,
-                  onTap: onTapCancel,
+                  enabled: controller.enableNavigateButton,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 Container(
                   width: 1,
                   height: 60,
-                  color: AppTheme.colors.divider,
+                  color: controller.enableNavigateButton
+                      ? AppTheme.colors.divider
+                      : AppTheme.colors.dividerDisabled,
                 ),
-                Observer(
-                  builder: (_) => StepperNextButton(
-                    label:
-                        controller.currentPage == 2 ? 'Finalizar' : 'Continuar',
-                    enabled: controller.enableNavigateButton,
-                    onTap: onTapNext,
-                  ),
+                StepperNextButton(
+                  label:
+                      controller.currentPage == 2 ? 'Finalizar' : 'Continuar',
+                  enabled: controller.enableNavigateButton,
+                  colored: controller.currentPage == 2,
+                  onTap: onTapNext,
                 ),
               ],
             ),

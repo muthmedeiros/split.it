@@ -19,6 +19,7 @@ abstract class AppColors {
   Color get eventTileMoney;
   Color get eventTilePeople;
   Color get divider;
+  Color get dividerDisabled;
   Color get stepperIndicatorPrimary;
   Color get stepperIndicatorSecondary;
   Color get backButton;
@@ -118,7 +119,7 @@ class AppColorsDefault implements AppColors {
   Color get inputBorder => Color(0xFF455250);
 
   @override
-  Color get stepperNextButtonDisabled => Color(0xFF666666);
+  Color get stepperNextButtonDisabled => Color(0xFF666666).withOpacity(0.2);
 
   @override
   Color get iconAdd => Color(0xFF40B28C);
@@ -131,4 +132,7 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get stepperNextButtonRegular => Color(0xFF40B28C);
+
+  @override
+  Color get dividerDisabled => Color(0xFF666666).withOpacity(0.2);
 }

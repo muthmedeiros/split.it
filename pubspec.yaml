@@ -36,6 +36,12 @@ dependencies:
 
   #Máscara de texto
   flutter_masked_text2: ^0.9.1
+
+  #Tratamento de erro e loading
+  bot_toast: ^4.0.1
+
+  #Localization
+  intl: ^0.17.0
   
 dev_dependencies:
   flutter_test:

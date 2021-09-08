@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/shared/utils/formatters.dart';
 
 import '../../../theme/app_theme.dart';
 import '../../home/widgets/icon_dolar_widget.dart';
@@ -58,7 +59,7 @@ class InfoCardWidget extends StatelessWidget {
                 LoadingWidget(size: Size(94, 24))
               ] else ...[
                 Text(
-                  'R\$ ${value.toStringAsFixed(2)}',
+                  '${value.reais()}',
                   style: _amountTextStyle,
                 ),
               ]
