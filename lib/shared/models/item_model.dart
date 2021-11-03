@@ -28,7 +28,7 @@ class ItemModel {
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
       name: map['name'],
-      value: map['value'],
+      value: double.tryParse(map['value'].toString()) ?? 0.0,
     );
   }
 

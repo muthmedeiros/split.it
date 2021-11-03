@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:split_it/modules/event_details/event_details_page.dart';
 
 import '../../shared/models/event_model.dart';
 import '../home/home_controller.dart';
@@ -30,8 +31,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBarWidget(
         user: user,
-        onTapAddButton: () {
-          Navigator.pushNamed(context, "/create_split");
+        onTapAddButton: () async {
+          await Navigator.pushNamed(context, "/create_split");
+          controller.getEvents();
         },
       ),
       body: Padding(
@@ -55,7 +57,20 @@ class _HomePageState extends State<HomePage> {
                     children: (controller.state as HomeStateSuccess)
                         .events
                         .map(
-                          (e) => EventTileWidget(eventModel: e),
+                          (e) => EventTileWidget(
+                            eventModel: e,
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => EventDetailsPage(
+                                    event: e,
+                                  ),
+                                ),
+                              );
+                              controller.getEvents();
+                            },
+                          ),
                         )
                         .toList(),
                   );

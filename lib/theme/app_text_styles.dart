@@ -7,10 +7,11 @@ abstract class AppTextStyles {
   TextStyle get title;
   TextStyle get button;
   TextStyle get nameAppBarHome;
+  TextStyle get appBarEventDetails;
   TextStyle get infoCardTitle;
   TextStyle get receiveAmount;
   TextStyle get payAmount;
-  TextStyle get eventTileTile;
+  TextStyle get eventTileTitle;
   TextStyle get eventTileSubtitle;
   TextStyle get eventTileMoney;
   TextStyle get eventTilePeople;
@@ -25,6 +26,7 @@ abstract class AppTextStyles {
   TextStyle get textField;
   TextStyle get personTileTitle;
   TextStyle get personTileTitleSelected;
+  TextStyle get eventDetailTitle;
 }
 
 class AppTextStylesDefault implements AppTextStyles {
@@ -92,7 +94,7 @@ class AppTextStylesDefault implements AppTextStyles {
       );
 
   @override
-  TextStyle get eventTileTile => GoogleFonts.inter(
+  TextStyle get eventTileTitle => GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.w600,
         color: AppTheme.colors.eventTileTitle,
@@ -173,5 +175,19 @@ class AppTextStylesDefault implements AppTextStyles {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppTheme.colors.stepperNextButtonRegular,
+      );
+
+  @override
+  TextStyle get appBarEventDetails => GoogleFonts.montserrat(
+        fontSize: 22,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.eventTileTitle,
+      );
+
+  @override
+  TextStyle get eventDetailTitle => GoogleFonts.roboto(
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.eventTileTitle,
       );
 }

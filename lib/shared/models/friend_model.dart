@@ -3,18 +3,23 @@ import 'dart:convert';
 class FriendModel {
   final String name;
   final String photoUrl;
+  final bool paid;
+
   FriendModel({
     required this.name,
     required this.photoUrl,
+    this.paid = false,
   });
 
   FriendModel copyWith({
     String? name,
     String? photoUrl,
+    bool? paid,
   }) {
     return FriendModel(
       name: name ?? this.name,
       photoUrl: photoUrl ?? this.photoUrl,
+      paid: paid ?? this.paid,
     );
   }
 
@@ -22,6 +27,7 @@ class FriendModel {
     return {
       'name': name,
       'photoUrl': photoUrl,
+      'paid': paid,
     };
   }
 
@@ -30,6 +36,7 @@ class FriendModel {
       name: map['name'],
       photoUrl: map['photoUrl'] ??
           "https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png",
+      paid: map['paid'] ?? false,
     );
   }
 
